@@ -43,6 +43,7 @@ class _HomePageState extends State<HomePage> {
           Center(
             child: Page5(),
           ),
+          Page6(),
         ],
       ),
     );
@@ -141,5 +142,43 @@ class _Page5State extends State<Page5> {
           ? CustomAnimationControl.PLAY_REVERSE
           : CustomAnimationControl.PLAY;
     });
+  }
+}
+
+enum AniProps { witdh, height, color, offset }
+
+class Page6 extends StatelessWidget {
+  final tween = MultiTween<AniProps>()
+    ..add(AniProps.witdh, 0.0.tweenTo(100.0), 1.seconds)
+    ..add(AniProps.witdh, 100.0.tweenTo(200.0), 0.5.seconds)
+    ..add(AniProps.height, 0.0.tweenTo(200.0), 2.5.seconds)
+    ..add(AniProps.color, Colors.red.tweenTo(Colors.blue), 5.seconds)
+    ..add(
+      AniProps.offset,
+      Tween(
+        begin: Offset(0.0, 200.0),
+        end: Offset(0.0, 0.0),
+      ),
+      5.seconds,
+    );
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: MirrorAnimation<MultiTweenValues<AniProps>>(
+        tween: tween,
+        duration: tween.duration,
+        builder: (context, child, value) {
+          return Transform.translate(
+            offset: value.get(AniProps.offset),
+            child: Container(
+              width: value.get(AniProps.witdh),
+              height: value.get(AniProps.height),
+              color: value.get(AniProps.color),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
