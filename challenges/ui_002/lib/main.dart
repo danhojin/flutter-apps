@@ -129,40 +129,30 @@ class Page extends StatelessWidget {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      Icon(
-                        Icons.star_half,
-                        color: Colors.yellow,
-                        size: 15,
-                      ),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        '4.5 (566)',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
+                    children: [
+                          Icons.star,
+                          Icons.star,
+                          Icons.star,
+                          Icons.star,
+                          Icons.star_half,
+                        ]
+                            .map<Widget>(
+                              (el) => Icon(
+                                el,
+                                color: Colors.yellow,
+                                size: 15.0,
+                              ),
+                            )
+                            .toList() +
+                        <Widget>[
+                          SizedBox(
+                            width: 5,
+                          ),
+                          Text(
+                            '4.5 (566)',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
                   ),
                   SizedBox(
                     height: 15,
