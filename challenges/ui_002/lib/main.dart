@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ui_002/fade_in_animation.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -116,61 +117,73 @@ class Page extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                  FadeInAnimation(
+                    delay: 0.0,
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                          Icons.star,
-                          Icons.star,
-                          Icons.star,
-                          Icons.star,
-                          Icons.star_half,
-                        ]
-                            .map<Widget>(
-                              (el) => Icon(
-                                el,
-                                color: Colors.yellow,
-                                size: 15.0,
-                              ),
-                            )
-                            .toList() +
-                        <Widget>[
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Text(
-                            '4.5 (566)',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    description,
-                    style: TextStyle(
-                      fontSize: 17,
-                      height: 1.4,
-                      color: Colors.grey[300],
+                  FadeInAnimation(
+                    delay: 0.3,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                            Icons.star,
+                            Icons.star,
+                            Icons.star,
+                            Icons.star,
+                            Icons.star_half,
+                          ]
+                              .map<Widget>(
+                                (el) => Icon(
+                                  el,
+                                  color: Colors.yellow,
+                                  size: 15.0,
+                                ),
+                              )
+                              .toList() +
+                          <Widget>[
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              '4.5 (566)',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
                     ),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  Text(
-                    'READ MORE',
-                    style: TextStyle(fontSize: 15, color: Colors.grey),
+                  FadeInAnimation(
+                    delay: 0.6,
+                    child: Text(
+                      description,
+                      style: TextStyle(
+                        fontSize: 17,
+                        height: 1.4,
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  FadeInAnimation(
+                    delay: 0.9,
+                    child: Text(
+                      'READ MORE',
+                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                    ),
                   ),
                 ],
               ),
