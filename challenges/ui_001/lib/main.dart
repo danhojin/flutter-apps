@@ -124,7 +124,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.all(15),
             child: Text(
               promoText,
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.black, fontSize: 20),
             ),
           ),
         ),
