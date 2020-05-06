@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider1/pages/cart.dart';
@@ -10,44 +11,9 @@ class HomePage extends StatelessWidget {
     final favorites = Provider.of<Favorites>(context, listen: true);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Provider sample'),
-        actions: <Widget>[
-          Stack(
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Cart()),
-                  );
-                },
-              ),
-              favorites.length > 0
-                  ? Positioned(
-                      right: 10,
-                      top: 10,
-                      child: Container(
-                        height: 18,
-                        width: 18,
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(9.0),
-                        ),
-                        child: Center(
-                          child: Text(
-                            favorites.length.toString(),
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ),
-                      ),
-                    )
-                  : Container(),
-            ],
-          )
-        ],
-      ),
+      appBar: AppBar(title: Text('Provider sample'), actions: <Widget>[
+        _shoppingCartBadge(context, favorites.length),
+      ]),
       body: ListView.builder(
         itemBuilder: (context, index) {
           final word = words[index];
@@ -59,8 +25,8 @@ class HomePage extends StatelessWidget {
               if (favorites.isSaved(word)) {
                 favorites.toggle(word);
               }
-              Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text('${word.asPascalCase} dismissed')));
+              Scaffold.of(context).showSnackBar(
+                  SnackBar(content: Text('${word.asPascalCase} dismissed')));
             },
             child: ListTile(
               title: Text(word.asPascalCase),
@@ -73,5 +39,32 @@ class HomePage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Widget _shoppingCartBadge(BuildContext context, int nItems) {
+    return nItems > 0
+        ? Badge(
+            position: BadgePosition.topRight(top: 5, right: 5),
+            // animationDuration: 0.3.seconds,
+            animationDuration: Duration(milliseconds: 300),
+            animationType: BadgeAnimationType.scale,
+            badgeContent: Text(
+              nItems.toString(),
+              style: TextStyle(color: Colors.white),
+            ),
+            child: IconButton(
+              icon: Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Cart()),
+                );
+              },
+            ),
+          )
+        : IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {},
+          );
   }
 }
