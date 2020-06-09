@@ -49,7 +49,10 @@ class HomePage extends StatelessWidget {
             DigitPaint(
               points: strokesProvider.points,
             ),
-            Text(digitInterperterProvider.result),
+            Text(
+              digitInterperterProvider.result,
+              style: TextStyle(fontSize: 20),
+            ),
           ],
         ),
       ),
